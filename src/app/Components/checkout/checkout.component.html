@@ -1,0 +1,19 @@
+<div class="mainContainer">
+    <ng-container *ngFor="let item of cartlist">
+        <div class="product-item" style="height: 100%;">
+            <div class="product-item-content">
+                <div class="p-mb-3" style="display: flex; justify-content: center;">
+                    <img src="../../../assets/images/{{item.code}}.jpg" [alt]="item.name" class="product-image" />
+                </div>
+                <div>
+                    <h4 class="p-mb-2">{{item.name}}</h4>
+                    <h6 class="p-mt-0 p-mb-2">${{item.price}}</h6>
+                    <span [class]="'product-badge status-'+item.status.toLowerCase()">{{item.status}}</span>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
+<div class="flex px-4 justify-end">
+    <button pButton type="button" icon="pi pi-angle-double-right" iconPos="left" label="Proceed to buy" routerLink="/checkout"></button>
+</div>

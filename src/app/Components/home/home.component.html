@@ -1,0 +1,94 @@
+<div class="mainContainer">
+    <div class="firstSection mb-4">
+        <header class="headerClass flex items-center justify-between">
+            <div>First Antique Collection</div>
+            <div class="flex justify-between">
+                <!-- <p-autoComplete [(ngModel)]="searchQuery" [suggestions]="results" (completeMethod)="search($event)" placeholder="Search here"></p-autoComplete> -->
+                <p-dropdown [options]="filters" [(ngModel)]="selectedFilter" (onChange)="filterChanged($event)"></p-dropdown>
+            </div>
+        </header>
+        <div class="innerDiv">
+            <p-carousel [value]="productsToDisplay" styleClass="custom-carousel" [numVisible]="5" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
+                <ng-template let-product pTemplate="item">
+                    <div class="product-item" style="height: 100%;">
+                        <div class="product-item-content">
+                            <div class="p-mb-3" style="display: flex; justify-content: center;">
+                                <img src="{{product.image}}" [alt]="product.name" class="product-image" />
+                            </div>
+                            <div>
+                                <h4 class="p-mb-2">{{product.name}}</h4>
+                                <h6 class="p-mt-0 p-mb-2">${{product.price}}</h6>
+                                <span [class]="'product-badge status-'+product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
+                                <div class="car-buttons p-mt-5">
+                                    <p-button [disabled]="product.inwishlist=='true'" type="button" styleClass="p-button-primary p-button-rounded p-mr-2" icon="pi pi-folder-open" (click)="product.inwishlist=='true' ? {} : addToWishList(product)"></p-button>
+                                    <p-button [disabled]="product.inventoryStatus=='OUTOFSTOCK' || product.incart=='true'" type="button" styleClass="p-button-primary p-button-rounded p-mr-2" icon="pi pi-shopping-cart" (click)="product.inventoryStatus=='OUTOFSTOCK' || product.incart=='true' ? {} : addToCart(product)"></p-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+    <div class="secondSection mb-4">
+        <header class="headerClass">Second Antique Collection</header>
+        <div class="innerDiv">
+            <p-carousel [value]="products" styleClass="custom-carousel" [numVisible]="5" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
+                <ng-template let-product pTemplate="item">
+                    <div class="product-item" style="height: 100%;">
+                        <div class="product-item-content">
+                            <div class="p-mb-3" style="display: flex; justify-content: center;">
+                                <img src="{{product.image}}" [alt]="product.name" class="product-image" />
+                            </div>
+                            <div>
+                                <h4 class="p-mb-2">{{product.name}}</h4>
+                                <h6 class="p-mt-0 p-mb-2">${{product.price}}</h6>
+                                <span [class]="'product-badge status-'+product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
+                                <div class="car-buttons p-mt-5">
+                                    <p-button [disabled]="product.inwishlist=='true'" type="button" styleClass="p-button-primary p-button-rounded p-mr-2" icon="pi pi-folder-open" (click)="product.inwishlist=='true' ? {} : addToWishList(product)"></p-button>
+                                    <p-button [disabled]="product.inventoryStatus=='OUTOFSTOCK' || product.incart=='true'" type="button" styleClass="p-button-primary p-button-rounded p-mr-2" icon="pi pi-shopping-cart" (click)="product.inventoryStatus=='OUTOFSTOCK' || product.incart=='true' ? {} : addToCart(product)"></p-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+    <div class="thirdSection">
+        <header class="headerClass">Third Antique Collection</header>
+        <div class="innerDiv">
+            <p-carousel [value]="products" styleClass="custom-carousel" [numVisible]="5" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
+                <ng-template let-product pTemplate="item">
+                    <div class="product-item" style="height: 100%;">
+                        <div class="product-item-content">
+                            <div class="p-mb-3" style="display: flex; justify-content: center;">
+                                <img src="{{product.image}}" [alt]="product.name" class="product-image" />
+                            </div>
+                            <div>
+                                <h4 class="p-mb-2">{{product.name}}</h4>
+                                <h6 class="p-mt-0 p-mb-2">${{product.price}}</h6>
+                                <span [class]="'product-badge status-'+product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
+                                <div class="car-buttons p-mt-5">
+                                    <p-button [disabled]="product.inwishlist=='true'" type="button" styleClass="p-button-primary p-button-rounded p-mr-2" icon="pi pi-folder-open" (click)="product.inwishlist=='true' ? {} : addToWishList(product)"></p-button>
+                                    <p-button [disabled]="product.inventoryStatus=='OUTOFSTOCK' || product.incart=='true'" type="button" styleClass="p-button-primary p-button-rounded p-mr-2" icon="pi pi-shopping-cart" (click)="product.inventoryStatus=='OUTOFSTOCK' || product.incart=='true' ? {} : addToCart(product)"></p-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+</div>
+
+<p-toast position="top-right" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div class="p-flex p-flex-column" style="flex: 1">
+            <div class="p-text-center">
+                <h4>{{message.summary}}</h4>
+                <p>{{message.detail}}</p>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

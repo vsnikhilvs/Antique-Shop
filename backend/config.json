@@ -1,0 +1,5 @@
+﻿{
+    "connectionString": "mongodb://localhost:27017/antiqueshop",
+    "secret": "e62750b7-e305-4de3-9db1-be4eef9b1f0e-d8537e4a-12c8-4c25-ba86-7fdbd7ca0b9b"
+}
+

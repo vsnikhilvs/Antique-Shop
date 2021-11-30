@@ -1,0 +1,55 @@
+<div class="topBar flex items-center justify-between p-4">
+    <div class="serviceType rounded-sm cursor-pointer" routerLink="/home">
+        <div class="p-4 bg-[#8AC3F2] text-text_primary text-sm font-semibold">
+            <i class="pi pi-home mr-2"></i>Antique Store
+        </div>
+    </div>
+    <div class="userSection mr-4 flex items-center">
+        <div routerLink="/wishlist">
+            <button> 
+                <i *ngIf="!wlCount" class="pi pi-folder-open mr-8" style="font-size: 1.5rem"></i>
+                <i *ngIf="wlCount" pBadge [value]="wlCount" class="pi pi-folder-open mr-8" style="font-size: 1.5rem"></i>
+            </button>
+        </div>
+        <div routerLink="/cart">
+            <button> 
+                <i *ngIf="!ctCount" class="pi pi-shopping-cart mr-8" style="font-size: 1.5rem"></i>
+                <i *ngIf="ctCount" pBadge [value]="ctCount" class="pi pi-shopping-cart mr-8" style="font-size: 1.5rem"></i>
+            </button>
+        </div>
+        <div class="flex items-center">
+            <p-avatar *ngIf="!loggedIn" icon="pi pi-user" styleClass="p-mr-2" size="large" shape="circle" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"></p-avatar>
+            <p-avatar *ngIf="loggedIn" image="https://primefaces.org/primeng/showcase/assets/showcase/images/demo/organization/walter.jpg" size="large" shape="circle"></p-avatar>
+            <div class="dropdown">
+                <button class="dropbtn"> 
+                    <i class="pi pi-angle-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <div class="p-2 cursor-pointer" *ngIf="!loggedIn" (click)="loginModal()">Login</div>
+                    <div class="p-2 cursor-pointer" *ngIf="loggedIn" (click)="logout()">Logout</div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+<p-dialog header="Login" [(visible)]="showLoginModal" [style]="{width: '30vw'}">
+    <div>
+        <div class="mb-6">
+            <span class="p-float-label">
+                <input [ngClass]="submitted && !email ? 'ng-invalid' : 'ng-valid'" id="float-uname" type="email" pInputText [(ngModel)]="email"> 
+                <label for="float-uname">Email</label>
+            </span>
+        </div>
+        <div>
+            <span class="p-float-label">
+                <input [ngClass]="submitted && !password ? 'ng-invalid' : 'ng-valid'" id="float-pwd" type="password" pInputText [(ngModel)]="password"> 
+                <label for="float-pwd">Password</label>
+            </span>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-times" (click)="showLoginModal=false" label="Cancel" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-check" (click)="login()" label="Login" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
